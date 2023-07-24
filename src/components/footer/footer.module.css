@@ -1,0 +1,25 @@
+.container {
+    /*background-color: aqua;*/
+    height: 50px;
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*.imgContainer {*/
+/*    height: 15px;*/
+/*    width: 15px;*/
+/*    position: relative;*/
+/*}*/
+
+.social {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon {
+    opacity: 0.6;
+    cursor: pointer;
+}
