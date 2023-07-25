@@ -2,6 +2,7 @@
 import React from "react";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
   // const [data, setData] = useState([]);
@@ -31,17 +32,24 @@ const Dashboard = () => {
   //   };
   //   getData();
   // }, []);
-  const session = useSession();
-  console.log(session);
+
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
   const { data, error, isLoading } = useSWR(
     "https://jsonplaceholder.typicode.com/posts",
     fetcher,
   );
+  const session = useSession();
+  const router = useRouter();
+  console.log(session);
+  if (session.status === "loading" || isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (session.status === "unauthenticated") {
+    return router.push("/dashboard/login");
+  }
 
   // console.log(data);
   if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
 
   return <div>{JSON.stringify(data)}</div>;
 };
