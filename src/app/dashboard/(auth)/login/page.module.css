@@ -31,3 +31,8 @@
     border: none;
     color: #fff;
 }
+
+.googleButton {
+    background-color: #e80d6c;
+    width: 300px;
+}
